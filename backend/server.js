@@ -14,7 +14,6 @@ const exp = require("constants");
 const app = express();
 const server = http.createServer(app);
 const Port = process.env.Port || 5000
-
 //
 // -------------------- MIDDLEWARE --------------------
 //

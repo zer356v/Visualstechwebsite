@@ -9,23 +9,26 @@ import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import NotFound from './pages/NotFound.jsx';
 import './App.css';
+import ScroolToTop from './components/ScroolToTop.jsx'
 
 const AnimatedRoutes = () => {
   const location = useLocation();
   
   return (
-      <Routes >
+    <>
+    <ScroolToTop/>
+      <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Index />} />
         <Route path="/services" element={<Services />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
+    </>
   );
 };
-
 
 
 export default AnimatedRoutes;
