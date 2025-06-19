@@ -70,17 +70,37 @@ const Contact = () => {
     }));
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Form validation
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus({
-        submitted: true,
-        error: true,
-        message: 'Please fill in all required fields.'
+    setFormStatus('sending'); // Clear and show loading status
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/send_mail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData),
       });
-      return;
+  
+      if (!response.ok) {
+        throw new Error("Failed to send email");
+      }
+  
+      const data = await response.json();
+      console.log("Success:", data);
+  
+      setFormData({ name: "", email: "", phone: "", message: "", subject: "" }); // Reset form
+      setFormStatus('success'); // Show success status
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setFormStatus('error'); // Show error status
+    } finally {
+      // Reset status to idle after 3 seconds
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 3000);
     }
     
     // Simulated form submission success
@@ -89,15 +109,7 @@ const Contact = () => {
       error: false,
       message: 'Thank you for your message! We will contact you shortly.'
     });
-    
-    // Reset form after successful submission
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+   
     
     // Reset form status after 5 seconds
     setTimeout(() => {

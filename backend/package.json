@@ -19,8 +19,8 @@
     "helmet": "^8.1.0",
     "http": "^0.0.1-security",
     "nodemailer": "^7.0.3",
+    "nodemon": "^3.1.10",
     "ratelimit": "^0.0.4"
   },
-  "devDependencies": {},
   "description": ""
 }
