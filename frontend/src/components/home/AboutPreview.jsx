@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 const AboutPreview = () => {
   const stats = [
-    { number: "10+", label: "Years Experience" },
-    { number: "200+", label: "Happy Clients" },
-    { number: "500+", label: "Projects Completed" },
-    { number: "20+", label: "Team Members" }
+    { number: "1+", label: "Years Experience" },
+    { number: "15+", label: "Happy Clients" },
+    { number: "30+", label: "Projects Completed" },
+    { number: "7+", label: "Team Members" }
   ];
 
   return (
@@ -20,9 +20,9 @@ const AboutPreview = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="section-title">About TechSolutions</h2>
+            <h2 className="section-title">About Visuals Tech</h2>
             <p className="text-lg text-gray-600 mb-6">
-              With over a decade of experience in the digital industry, we've helped businesses 
+              We are startup With over 1+ year of experience in the digital industry, we've helped businesses 
               of all sizes achieve their goals through innovative technology solutions.
             </p>
             <p className="text-gray-600 mb-8">

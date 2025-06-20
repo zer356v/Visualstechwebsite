@@ -5,10 +5,10 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container-custom py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">TechSolutions</h3>
+            <h3 className="text-2xl font-bold mb-4">Visuals Tech</h3>
             <p className="text-gray-400 mb-4 max-w-md">
               We create stunning digital experiences that drive business growth and exceed expectations.
             </p>
@@ -44,19 +44,18 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>1234 Tech Avenue</li>
-              <li>San Francisco, CA 94107</li>
-              <li>(123) 456-7890</li>
-              <li>info@techsolutions.com</li>
+          <div className='z-50'>
+            <h4 className="text-lg  font-semibold mb-4">Contact</h4>
+            <ul className="space-y-2 text-white">
+              <li>Chennai,Tamilnadu</li>
+              <li>(91) 9150599004</li>
+              <li>visualsservices@gmail.com</li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 TechSolutions. All rights reserved.</p>
+        <div className="border-t border-gray-800 mt-8 mb-6 pt-8 text-center text-gray-400">
+          <p>&copy; 2025 visuals Tech. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { assets } from '../assets/assets';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold text-white">
-            TechSolutions
+            <img src={assets.visualslogo} className='w-40 h-40' alt="" />
           </Link>
 
           {/* Desktop Navigation */}

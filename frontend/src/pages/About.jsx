@@ -5,26 +5,32 @@ import Layout from '../components/Layout';
 const About = () => {
   const teamMembers = [
     {
-      name: 'Jane Smith',
-      position: 'CEO & Founder',
+      name: 'Sai',
+      position: 'Team Leader',
       bio: '15+ years of experience in web development and digital strategy.',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+      image: 'https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg?uid=R181922310&ga=GA1.1.449060106.1736238587&semt=ais_hybrid&w=740'
     },
     {
-      name: 'Michael Johnson',
-      position: 'Creative Director',
+      name: 'Seran',
+      position: 'Full Stack Developer',
       bio: 'Award-winning designer with expertise in brand identity and UX/UI design.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+      image: 'https://img.freepik.com/premium-photo/funny-illustration-3d-cartoon-backpacker_183364-78903.jpg?uid=R181922310&ga=GA1.1.449060106.1736238587&semt=ais_hybrid&w=740'
     },
     {
-      name: 'Sarah Williams',
-      position: 'Lead Developer',
+      name: 'Anandhan',
+      position: 'Backend Developer',
       bio: 'Full-stack developer with a passion for creating robust, scalable web applications.',
-      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+      image: 'https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174401.jpg?uid=R181922310&ga=GA1.1.449060106.1736238587&semt=ais_hybrid&w=740'
     },
     {
-      name: 'David Chen',
-      position: 'Marketing Specialist',
+      name: 'Praveen',
+      position: 'Designer',
+      bio: 'Digital marketing expert with a focus on SEO, content strategy, and analytics.',
+      image: 'https://img.freepik.com/free-vector/smiling-young-man-glasses_1308-174702.jpg?uid=R181922310&ga=GA1.1.449060106.1736238587&semt=ais_hybrid&w=740'
+    },
+    {
+      name: 'Anandhan',
+      position: 'Full Stack Specilist',
       bio: 'Digital marketing expert with a focus on SEO, content strategy, and analytics.',
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     }
@@ -65,7 +71,7 @@ const About = () => {
               <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mb-8"></div>
               
               <p className="text-blue-100 mb-6">
-                Founded in 2010, TechSolutions began with a simple mission: to help businesses succeed in the digital world through innovative technology solutions and exceptional service.
+                We are Startup's And Created in 2025, VisualsTech began with a simple mission: to help businesses succeed in the digital world through innovative technology solutions and exceptional service.
               </p>
               
               <p className="text-blue-100 mb-6">
@@ -73,7 +79,7 @@ const About = () => {
               </p>
               
               <p className="text-blue-100">
-                Today, we're proud to have served over 200 clients across various industries, from startups to established enterprises. Our commitment to quality, innovation, and client satisfaction remains at the core of everything we do.
+                Today, we're proud to have served over 20 clients across various industries, from startups to established enterprises. Our commitment to quality, innovation, and client satisfaction remains at the core of everything we do.
               </p>
             </motion.div>
             
@@ -112,7 +118,7 @@ const About = () => {
             <p className="text-xl text-blue-200">The talented individuals behind our success</p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {teamMembers.map((member, index) => (
               <motion.div 
                 key={index}
