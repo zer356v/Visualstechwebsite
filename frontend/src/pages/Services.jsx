@@ -39,22 +39,6 @@ const Services = () => {
       reversed: true
     },
     {
-      id: 'graphic-design',
-      title: 'Graphic Design',
-      description: 'Our creative team designs captivating visual assets that strengthen your brand identity and communication. We translate your brand values into compelling visuals that resonate with your audience.',
-      features: [
-        'Logo design and brand identity creation',
-        'Marketing collateral (brochures, flyers, business cards)',
-        'Social media graphics and templates',
-        'Infographics and data visualization',
-        'Packaging design',
-        'Banner ads and digital graphics',
-        'Print design services'
-      ],
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      reversed: false
-    },
-    {
       id: 'digital-marketing',
       title: 'Digital Marketing',
       description: 'Boost your online presence and reach your target audience with our comprehensive digital marketing strategies. We help you navigate the digital landscape and achieve measurable results.',
