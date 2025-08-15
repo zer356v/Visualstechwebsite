@@ -85,7 +85,6 @@ const Projects = () => {
     { id: 'all', name: 'All Projects' },
     { id: 'web-design', name: 'Web Design' },
     { id: 'web-development', name: 'Web Development' },
-    { id: 'graphic-design', name: 'Graphic Design' },
     { id: 'digital-marketing', name: 'Digital Marketing' },
   ];
   
@@ -97,14 +96,6 @@ const Projects = () => {
       description: 'A comprehensive e-commerce solution for a fashion retailer with advanced filtering, payment processing, and inventory management.',
       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       link: '/projects/e-commerce-platform'
-    },
-    {
-      id: '2',
-      title: 'Corporate Identity',
-      category: 'graphic-design',
-      description: 'Complete brand identity design including logo, color palette, typography, and brand guidelines for a finance company.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/corporate-identity'
     },
     {
       id: '3',

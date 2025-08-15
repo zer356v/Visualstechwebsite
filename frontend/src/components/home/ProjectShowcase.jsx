@@ -13,12 +13,6 @@ const ProjectsShowcase = () => {
       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     },
     {
-      id: '2',
-      title: 'Corporate Branding',
-      category: 'graphic-design',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    },
-    {
       id: '3',
       title: 'Mobile App Design',
       category: 'web-design',
@@ -36,7 +30,6 @@ const ProjectsShowcase = () => {
     { id: 'all', name: 'All' },
     { id: 'web-design', name: 'Web Design' },
     { id: 'web-development', name: 'Web Development' },
-    { id: 'graphic-design', name: 'Graphic Design' },
     { id: 'digital-marketing', name: 'Digital Marketing' },
   ];
   
@@ -146,7 +139,7 @@ const ProjectsShowcase = () => {
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {filteredProjects.map((project) => (
               <motion.div
