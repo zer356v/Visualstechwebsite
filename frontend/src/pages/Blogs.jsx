@@ -14,8 +14,7 @@ const blogData = [
     category: "SaaS & Software",
     excerpt:
       "Discover how Virtual Chemistry Lab, our innovative SaaS platform, is transforming the way students learn chemistry online. Explore interactive experiments, real-time simulations, and a smarter approach to science education.",
-    image:
-      (assets.Virtual_lab_visualstech),
+    image: assets.Virtual_lab_visualstech,
   },
   // AI & Tools
   {
@@ -26,8 +25,7 @@ const blogData = [
     category: "AI & Tools",
     excerpt:
       "Explore how our AI-powered voice assistant helps users improve their English speaking skills with real-time practice, personalized feedback, and interactive conversations. Making language learning smarter and more accessible.",
-    image:
-      (assets.Voice_agent),
+    image: assets.Voice_agent,
   },
 
   // E-commerce & Apps
@@ -39,32 +37,31 @@ const blogData = [
     category: "E-commerce & Apps",
     excerpt:
       "Learn how we developed a feature-rich food delivery application that connects restaurants with customers seamlessly. From real-time tracking to secure payments, explore how our app delivers convenience and efficiency.",
-    image:
-      (assets.South_spice),
+    image: assets.South_spice,
   },
   // Development & Case Studies
   {
     id: 4,
-    title: "Building a Scalable Microservice Marketplace App for Modern Businesses",
+    title:
+      "Building a Scalable Microservice Marketplace App for Modern Businesses",
     date: "ongoing processing",
     author: "Visuals Tech Team",
     category: "Development & Case Studies",
     excerpt:
       "Dive into our journey of developing a robust microservice-based marketplace app for Android and beyond. Learn how we ensured scalability, modularity, and performance to meet the needs of today’s dynamic market.",
-    image:
-      (assets.Upcomming_microservice_app),
+    image: assets.Upcomming_microservice_app,
   },
   // Marketing Tech Trends
   {
     id: 5,
-    title: "How Students Are Learning SEO Tools and Exploring the Marketplace in 2025",
+    title:
+      "How Students Are Learning SEO Tools and Exploring the Marketplace in 2025",
     date: "September 26, 2025",
     author: "SAI Visuals Tech Team Member",
     category: "Tech Trends",
     excerpt:
       "Discover how today’s students are mastering SEO tools to grow websites, improve digital marketing skills, and explore opportunities in the online marketplace. Learn which tools are popular and how they are shaping the next generation of digital professionals.",
-    image:
-      (assets.Seo_thumbnail),
+    image: assets.Seo_thumbnail,
   },
 ];
 
@@ -110,30 +107,34 @@ export default function BlogPage() {
             transition={{ duration: 8, repeat: Infinity }}
           />
         </section>
-
         {/* Category Filter */}
-        <div className="flex justify-center gap-3 mt-10 mb-6">
-          {["All", "SaaS & Software", "Tech Trends", "Development & Case Studies", "AI & Tools", "E-commerce & Apps"].map(
-            (cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                  activeCategory === cat
-                    ? "bg-indigo-600 text-white"
-                    : "bg-gray-100 hover:bg-indigo-100 text-gray-700"
-                }`}
-              >
-                {cat}
-              </button>
-            )
-          )}
+        <div className="flex flex-wrap justify-center gap-3 mt-10 mb-6">
+          {[
+            "All",
+            "SaaS & Software",
+            "Tech Trends",
+            "Development & Case Studies",
+            "AI & Tools",
+            "E-commerce & Apps",
+          ].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition whitespace-nowrap ${
+                activeCategory === cat
+                  ? "bg-indigo-600 text-white"
+                  : "bg-gray-100 hover:bg-indigo-100 text-gray-700"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         {/* Blog + Sidebar */}
         <section className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-10 py-12">
           {/* Blog Grid */}
-          <div className="lg:col-span-2 grid md:grid-cols-2 gap-8">
+          <div className="lg:col-span-2 grid sm:grid-cols-1 md:grid-cols-2 gap-8">
             {filteredBlogs.slice(0, visibleBlogs).map((blog, index) => (
               <motion.div
                 key={blog.id}
@@ -152,15 +153,12 @@ export default function BlogPage() {
                   <p className="text-sm text-gray-500 mb-2">
                     {blog.date} • {blog.author}
                   </p>
-                  <p className="text-gray-600 mb-3">{blog.excerpt}</p>
-                  <span className="px-3 py-1 text-xs rounded-full bg-indigo-100 text-indigo-600">
+                  <p className="text-gray-600 mb-3 text-justify">{blog.excerpt}</p>
+                  <span className="px-3 py-1 text-xs rounded-full  bg-indigo-100 text-indigo-600">
                     {blog.category}
                   </span>
                   <div className="mt-4">
-                    <Link 
-                    to={`/blogs/${blog.id}`}>
-                      Read More →
-                    </Link>
+                    <Link to={`/blogs/${blog.id}`}>Read More →</Link>
                   </div>
                 </div>
               </motion.div>
@@ -168,7 +166,7 @@ export default function BlogPage() {
           </div>
 
           {/* Sidebar */}
-          <aside className="space-y-8">
+          <aside className="lg:col-span-1 space-y-8 mt-10 lg:mt-0">
             {/* About Section */}
             <motion.div
               className="bg-gray-50 p-6 rounded-2xl shadow-sm"
@@ -192,9 +190,21 @@ export default function BlogPage() {
             >
               <h3 className="font-semibold text-lg mb-3">Trending Topics</h3>
               <ul className="space-y-3 text-sm text-indigo-600">
-                <li><a href="#" className="hover:underline">AI SaaS in Education</a></li>
-                <li><a href="#" className="hover:underline">Future of Remote Work Tools</a></li>
-                <li><a href="#" className="hover:underline">Video-First Marketing</a></li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    AI SaaS in Education
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    Future of Remote Work Tools
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:underline">
+                    Video-First Marketing
+                  </a>
+                </li>
               </ul>
             </motion.div>
 
@@ -224,6 +234,7 @@ export default function BlogPage() {
             </motion.div>
           </aside>
         </section>
+
         {/* Load More Button */}
         {visibleBlogs < filteredBlogs.length && (
           <div className="flex justify-center pb-12">
@@ -245,7 +256,10 @@ export default function BlogPage() {
             {[
               { year: "2023", milestone: "Founded with a vision to innovate." },
               { year: "2024", milestone: "Launched SaaS billing software." },
-              { year: "2025", milestone: "AI-powered tools for global clients." },
+              {
+                year: "2025",
+                milestone: "AI-powered tools for global clients.",
+              },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
@@ -262,8 +276,6 @@ export default function BlogPage() {
             ))}
           </div>
         </section>
-
-        
       </div>
     </Layout>
   );
