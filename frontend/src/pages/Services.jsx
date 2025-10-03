@@ -8,51 +8,35 @@ import { Suspense } from 'react';
 const Services = () => {
   const services = [
     {
-      id: 'web-design',
-      title: 'Web Design',
-      description: 'We create stunning, responsive websites that captivate your audience and reflect your brand identity. Our design process focuses on user experience, visual appeal, and conversion optimization.',
+      id: 'SASS-applications',
+      title: 'sass Applications',
+      description: 'We build powerful SaaS platforms that help businesses streamline operations, improve collaboration, and deliver seamless experiences to their users. Our solutions are designed to be secure, scalable, and adaptable to your growth needs.',
       features: [
-        'Responsive design for all devices and screen sizes',
-        'User-centered interface that enhances engagement',
-        'Custom layouts tailored to your brand guidelines',
-        'Modern design trends with timeless appeal',
-        'SEO-friendly structure and architecture',
-        'Fast loading speeds and optimized performance'
+        'Custom SaaS platform development for diverse industries',
+        'Secure cloud-based architecture with high availability',
+        'Scalable infrastructure to support business growth',
+        'User-friendly dashboards and intuitive interfaces',
+        'Third-party API integration for extended functionality',
+        'Ongoing support, updates, and performance optimization'
       ],
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       reversed: false
     },
     {
-      id: 'web-development',
-      title: 'Web Development',
-      description: 'Our development team builds robust, scalable websites and applications using the latest technologies and best practices. We focus on creating solutions that are not just visually impressive but also technically excellent.',
+      id: 'software-tools',
+      title: 'Software Tools',
+      description: 'Our development team builds robust, scalable applications using the latest technologies and best practices. We create tools that solve real business challenges, enhance efficiency, and adapt to your growing needs.',
       features: [
-        'Custom website and web application development',
+        'Custom web and desktop application development',
         'Content management systems (WordPress, Shopify, etc.)',
-        'E-commerce solutions with secure payment gateways',
+        'E-commerce platforms with secure payment gateways',
         'Progressive Web Applications (PWAs)',
-        'API integration and development',
-        'Database design and management',
-        'Performance optimization and maintenance'
+        'API design, integration, and automation',
+        'Database design, migration, and optimization',
+        'Long-term support, updates, and maintenance'
       ],
       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       reversed: true
-    },
-    {
-      id: 'graphic-design',
-      title: 'Graphic Design',
-      description: 'Our creative team designs captivating visual assets that strengthen your brand identity and communication. We translate your brand values into compelling visuals that resonate with your audience.',
-      features: [
-        'Logo design and brand identity creation',
-        'Marketing collateral (brochures, flyers, business cards)',
-        'Social media graphics and templates',
-        'Infographics and data visualization',
-        'Packaging design',
-        'Banner ads and digital graphics',
-        'Print design services'
-      ],
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      reversed: false
     },
     {
       id: 'digital-marketing',

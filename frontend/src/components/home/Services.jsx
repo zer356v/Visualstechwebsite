@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const Services = () => {
   const services = [
     {
-      title: 'Web Design',
-      description: 'Beautiful, responsive websites that captivate your audience and reflect your brand.',
+      title: 'SASS Applications',
+      description: 'We specialize in building custom SaaS platforms that simplify workflows, enhance productivity, and deliver seamless user experiences',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5H9a2 2 0 00-2 2v12a4 4 0 004 4h6a2 2 0 002-2V7a2 2 0 00-2-2z" />
@@ -14,26 +14,18 @@ const Services = () => {
       )
     },
     {
-      title: 'Web Development',
-      description: 'Robust, scalable web applications built with the latest technologies.',
+      title: 'Software Tools',
+      description: 'From enterprise dashboards to workflow automation, we design and develop tools that solve real business challenges and scale with your growth.',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
         </svg>
       )
     },
-    {
-      title: 'Graphic Design',
-      description: 'Creative visual solutions that strengthen your brand identity.',
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-      )
-    },
+    
     {
       title: 'Digital Marketing',
-      description: 'Strategic marketing campaigns that boost your online presence.',
+      description: 'Our team crafts data-driven campaigns that combine SEO, social media, and targeted ads to help your brand reach the right audience at the right time.',
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -56,7 +48,7 @@ const Services = () => {
           <p className="text-xl text-blue-200">Comprehensive IT solutions tailored to your needs</p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div 
               key={index}
@@ -73,7 +65,7 @@ const Services = () => {
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-bold text-white mb-4">{service.title}</h3>
-                <p className="text-blue-200">{service.description}</p>
+                <p className="text-blue-200 text-justify">{service.description}</p>
               </div>
             </motion.div>
           ))}

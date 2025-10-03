@@ -10,6 +10,8 @@ import Contact from './pages/Contact.jsx';
 import NotFound from './pages/NotFound.jsx';
 import './App.css';
 import ScroolToTop from './components/ScroolToTop.jsx'
+import BlogPage from './pages/Blogs.jsx';
+import BlogDetail from './pages/BlogDetails.jsx';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -24,6 +26,8 @@ const AnimatedRoutes = () => {
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path='/blogs' element={<BlogPage/>}/>
+        <Route path="/blogs/:id" element={<BlogDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

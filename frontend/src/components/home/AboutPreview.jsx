@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const AboutPreview = () => {
   const stats = [
     { number: "1+", label: "Years Experience" },
-    { number: "15+", label: "Happy Clients" },
-    { number: "30+", label: "Projects Completed" },
+    { number: "45+", label: "Happy Clients" },
+    { number: "70+", label: "Projects Completed" },
     { number: "7+", label: "Team Members" }
   ];
 
