@@ -6,6 +6,7 @@ import { Stars, Float, MeshDistortMaterial, Text3D, Environment } from '@react-t
 import Layout from '../components/Layout';
 import ProjectFilters from '../components/projects/ProjectFilters';
 import ProjectCard from '../components/projects/ProjectCard';
+import { assets } from '../assets/assets';
 
 // Animated 3D text component
 const AnimatedText = ({ text, position, rotation, color = "#ffffff" }) => {
@@ -83,76 +84,77 @@ const Projects = () => {
   
   const filters = [
     { id: 'all', name: 'All Projects' },
-    { id: 'web-design', name: 'Web Design' },
-    { id: 'web-development', name: 'Web Development' },
-    { id: 'graphic-design', name: 'Graphic Design' },
-    { id: 'digital-marketing', name: 'Digital Marketing' },
+    { id: 'E-commerce', name: 'E-commerce' },
+    { id: 'Web Applications', name: 'Web Applications' },
+    { id: 'Web Designs', name: 'Web Designs' },
+    { id: 'Saas Product', name: 'Saas Product' },
+    { id: 'WebSites', name: 'Websites' },
   ];
   
   const projects = [
     {
       id: '1',
-      title: 'E-commerce Platform',
-      category: 'web-development',
-      description: 'A comprehensive e-commerce solution for a fashion retailer with advanced filtering, payment processing, and inventory management.',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/e-commerce-platform'
+      title: 'South Spice',
+      category: 'E-commerce',
+      description: 'A fast, eco-friendly food delivery platform bringing South India’s authentic flavors to your doorstep.',
+      image: (assets.South_spice),
+      link: '/projects/south-spice'
     },
     {
       id: '2',
-      title: 'Corporate Identity',
-      category: 'graphic-design',
+      title: 'Tomato',
+      category: 'E-commerce',
       description: 'Complete brand identity design including logo, color palette, typography, and brand guidelines for a finance company.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/corporate-identity'
+      image: (assets.Tomato1),
+      link: '/projects/Tomato'
     },
     {
       id: '3',
-      title: 'Travel Agency Website',
-      category: 'web-design',
-      description: 'Modern, responsive website design for a luxury travel agency with immersive visuals and intuitive user experience.',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/travel-agency-website'
+      title: 'Estate',
+      category: 'Web Designs',
+      description: 'A modern and elegant real estate website that simplifies property discovery and boosts brand presence.',
+      image: (assets.Estate1),
+      link: '/projects/Estate'
     },
     {
       id: '4',
-      title: 'SEO Optimization Campaign',
-      category: 'digital-marketing',
-      description: 'Comprehensive SEO strategy that increased organic traffic by 200% and improved search rankings for a local business.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/seo-optimization-campaign'
+      title: 'Quasar Mobiles',
+      category: 'WebSites',
+      description: 'A fast, modern website built for Quasar Mobiles to showcase the latest smartphones effortlessly',
+      image: (assets.Quasar1),
+      link: '/projects/Quasar'
     },
     {
       id: '5',
-      title: 'Mobile Banking App',
-      category: 'web-development',
-      description: 'Secure, user-friendly mobile banking application with advanced features like biometric authentication and real-time alerts.',
-      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/mobile-banking-app'
+      title: 'Meteor',
+      category: 'WebSites',
+      description: 'A sleek showcase of Meteor’s next-gen processors, graphics cards, and AI platforms highlighting performance and innovation.',
+      image: (assets.Meteor1),
+      link: '/projects/Meteor'
     },
     {
       id: '6',
-      title: 'Product Packaging',
-      category: 'graphic-design',
-      description: 'Creative packaging design for a premium skincare line that increased shelf visibility and brand recognition.',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/product-packaging'
+      title: 'Reactron',
+      category: 'Saas Product',
+      description: 'A futuristic virtual chemistry lab that lets students perform and visualize experiments through interactive digital simulations.',
+      image: (assets.Lab1),
+      link: '/projects/reactron'
     },
     {
       id: '7',
-      title: 'Restaurant Website',
-      category: 'web-design',
-      description: 'Elegant website design for a high-end restaurant featuring online reservations, menu presentation, and virtual tours.',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/restaurant-website'
+      title: 'Voice Agent',
+      category: 'Saas Product',
+      description: ' An voice platform offering multiple personas — from friendly companion to expert teacher — for natural and engaging audio experiences.',
+      image: (assets.Voiceagent1),
+      link: '/projects/voice-agent'
     },
     {
       id: '8',
-      title: 'Social Media Campaign',
-      category: 'digital-marketing',
-      description: 'Strategic social media campaign that increased engagement by 150% and drove significant traffic to a new product launch.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      link: '/projects/social-media-campaign'
+      title: 'Viunix',
+      category: 'WebSites',
+      description: 'A modern web platform for Viunix highlighting Interactive Flat Panels and commercial display solutions in the UAE',
+      image: (assets.Viunix1),
+      link: '/projects/Viunix'
     },
   ];
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import assets from '../../assets/assets';
 
 const ProjectsShowcase = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -8,9 +9,9 @@ const ProjectsShowcase = () => {
   const projects = [
     {
       id: '1',
-      title: 'E-commerce Website',
-      category: 'web-development',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      title: 'Reactron',
+      category: 'Saas Product',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     },
     {
       id: '2',
@@ -32,12 +33,13 @@ const ProjectsShowcase = () => {
     },
   ];
   
-  const filters = [
-    { id: 'all', name: 'All' },
-    { id: 'web-design', name: 'Web Design' },
-    { id: 'web-development', name: 'Web Development' },
-    { id: 'graphic-design', name: 'Graphic Design' },
-    { id: 'digital-marketing', name: 'Digital Marketing' },
+   const filters = [
+    { id: 'all', name: 'All Projects' },
+    { id: 'E-commerce', name: 'E-commerce' },
+    { id: 'Web Applications', name: 'Web Applications' },
+    { id: 'Web Designs', name: 'Web Designs' },
+    { id: 'Saas Product', name: 'Saas Product' },
+    { id: 'WebSites', name: 'Websites' },
   ];
   
   const filteredProjects = activeFilter === 'all' 

@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^10.3.0",
     "@react-three/fiber": "^9.1.2",
+    "animate-presence": "^0.2.1",
     "axios": "^1.10.0",
     "framer-motion": "^12.23.15",
     "lucide-react": "^0.544.0",

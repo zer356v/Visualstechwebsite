@@ -11,7 +11,7 @@ const ProjectCard = ({ project, filterName ,  }) => {
             <img 
               src={project.image} 
               alt={project.title} 
-              className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
               <div className="p-6">
@@ -23,12 +23,12 @@ const ProjectCard = ({ project, filterName ,  }) => {
         </Link>
         
         <div className="p-6">
-          <h3 className="text-xl font-bold text-sapphire-800 mb-2">{project.title}</h3>
-          <p className="text-sm text-gray-500 mb-4">{filterName}</p>
-          <p className="text-gray-700 mb-4">{project.description}</p>
+          <h3 className="text-xl font-bold text-sapphire-300 mb-2">{project.title}</h3>
+          <p className="text-sm text-gray-400 mb-4">{filterName}</p>
+          <p className="text-gray-400 mb-4">{project.description}</p>
           <Link 
             to={project.id} 
-            className="text-primary font-medium flex items-center hover:text-sapphire-600 transition-colors"
+            className="text-sapphire-500 font-medium flex items-center hover:text-sapphire-300 transition-colors"
           >
             View Project
             <svg 
