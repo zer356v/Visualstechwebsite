@@ -156,27 +156,7 @@ const Services = () => {
               thrive in the digital world.
             </motion.p>
             
-            <motion.div
-              className="relative w-full max-w-lg mx-auto backdrop-blur-lg bg-white/10 border border-white/20 rounded-full p-1"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              <div className="flex justify-between">
-                {['Design', 'Develop', 'Market', 'Scale'].map((item, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="px-4 py-2 text-white text-sm md:text-base font-medium"
-                    whileHover={{ 
-                      scale: 1.05,
-                      textShadow: "0 0 8px rgb(59, 130, 246)"
-                    }}
-                  >
-                    {item}
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+            
           </div>
         </div>
       </section>

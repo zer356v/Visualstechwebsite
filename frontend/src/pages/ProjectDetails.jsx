@@ -14,7 +14,7 @@ const ProjectDetail = () => {
     {
       id: "1",
       title: "South Spice",
-      category: "web-development",
+      category: "E-commerce",
       description:
         "A fast and modern food delivery platform built for authentic South Indian cuisine, featuring real-time order tracking, eco-friendly delivery options, and a seamless user experience.",
       fullDescription:
@@ -24,7 +24,7 @@ const ProjectDetail = () => {
       duration: "1 months",
       client: "Romeo South spice.",
       link: "/projects/south-spice",
-      gallery: [assets.South_spice1, assets.South_spice2, assets.South_spice3],
+      gallery: [assets.South_spice, assets.South_spice2, assets.South_spice3, assets.South_spice4, assets.South_spice5],
       challenges: [
         "Optimizing real-time order updates and delivery tracking",
         "Ensuring smooth user experience during high-traffic meal hours",
@@ -44,7 +44,7 @@ const ProjectDetail = () => {
     {
       id: "2",
       title: "Tomato",
-      category: "Web Development",
+      category: "E-commerce",
       description:
          'A sleek and responsive food delivery platform offering users a smooth browsing and ordering experience with real-time updates and secure online payments.',
       fullDescription:

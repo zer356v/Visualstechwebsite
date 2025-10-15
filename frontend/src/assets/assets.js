@@ -8,6 +8,8 @@ import demo from './demo.png'
 import South_spice1 from './South_Spice1.png'
 import South_spice2 from './South_Spice2.png'
 import South_spice3 from './South_Spice3.png'
+import South_spice4 from './South_Spice4.png'
+import South_spice5 from './South_Spice5.png'
 import Tomato1 from './Tomato1.png'
 import Tomato2 from './Tomato2.png'
 import Tomato3 from './Tomato3.png'
@@ -47,6 +49,8 @@ export const assets = {
     South_spice1,
     South_spice2,
     South_spice3,
+    South_spice4,
+    South_spice5,
     Tomato1,
     Tomato2,
     Tomato3,
