@@ -39,7 +39,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Serve sitemap.xml before React routes
 app.get("/sitemap.xml", (req, res) => {
   res.header("Content-Type", "application/xml");
   res.sendFile(path.join(__dirname, "sitemap.xml"));
