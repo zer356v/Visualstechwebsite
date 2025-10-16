@@ -23,31 +23,58 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-app.use(cors({ origin: "*", methods: ["GET","POST","PUT","DELETE"], credentials: true }));
+// CORS – only allow your frontend
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5000",
+  "https://viunix-frontend.onrender.com",
+  "https://www.viunix.com",
+];
+
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g., curl, Postman) or from allowed origins
+    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
+      callback(null, true);
+    } else {
+      console.log("❌ Blocked by CORS: ", origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
+app.options("*",cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const frontendPath = path.join(__dirname, "../frontend/dist");
+// Serve sitemap.xml before React routes
+app.get("/sitemap.xml", (req, res) => {
+  res.header("Content-Type", "application/xml");
+  res.sendFile(path.join(__dirname, "sitemap.xml"));
+});
 
-// Serve React frontend and static files
+
+
+// ✅ Serve robots.txt from backend folder
+app.get("/robots.txt", (req, res) => {
+  const filePath = path.join(__dirname, "robots.txt");
+  res.type("text/plain");
+  res.sendFile(filePath);
+});
+
+
+// -------------------- STATIC FRONTEND --------------------
+
+
+// Path to frontend's build folder
+const frontendPath = path.join(__dirname, "../frontend/dist");
+// Serve static files 
 app.use(express.static(frontendPath));
 
-// Serve sitemap.xml from frontend build
-app.get("/sitemap.xml", (req, res) => {
-  res.sendFile(path.join(frontendPath, "sitemap.xml"));
-});
-
-// Serve robots.txt from backend
-app.get("/robots.txt", (req, res) => {
-  res.sendFile(path.join(__dirname, "robots.txt"));
-});
-
-// React routing fallback
-app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
-});
 
 // -------------------- Email API -------------------- //
 app.post("/api/send_mail", async (req, res) => {
