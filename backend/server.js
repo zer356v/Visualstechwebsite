@@ -29,29 +29,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// -------------------- File Paths -------------------- //
 const frontendPath = path.join(__dirname, "../frontend/dist");
-const sitemapPath = path.join(__dirname, "sitemap.xml");
-const robotsPath = path.join(__dirname, "robots.txt");
 
-// -------------------- SEO: Sitemap & Robots -------------------- //
-app.get("/sitemap.xml", (req, res) => {
-  res.header("Content-Type", "application/xml");
-  res.sendFile(sitemapPath, (err) => {
-    if (err) res.status(500).send("Sitemap not found");
-  });
-});
-
-app.get("/robots.txt", (req, res) => {
-  res.type("text/plain");
-  res.sendFile(robotsPath, (err) => {
-    if (err) res.status(500).send("Robots.txt not found");
-  });
-});
-
-// -------------------- Serve React Frontend -------------------- //
+// Serve React frontend and static files
 app.use(express.static(frontendPath));
 
+// Serve sitemap.xml from frontend build
+app.get("/sitemap.xml", (req, res) => {
+  res.sendFile(path.join(frontendPath, "sitemap.xml"));
+});
+
+// Serve robots.txt from backend
+app.get("/robots.txt", (req, res) => {
+  res.sendFile(path.join(__dirname, "robots.txt"));
+});
+
+// React routing fallback
 app.get("*", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
