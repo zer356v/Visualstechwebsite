@@ -25,17 +25,33 @@ app.use(limiter);
 
 // CORS – only allow your frontend
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5000",
+  "https://visualstechfrontend.onrender.com//",
+  "https://www.visualstech.in",
+];
+
+
 app.use(cors({
-  origin: "https://visualstech.in",
-  methods: ["GET","POST","PUT","DELETE"],
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g., curl, Postman) or from allowed origins
+    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
+      callback(null, true);
+    } else {
+      console.log("❌ Blocked by CORS: ", origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
 
-app.options("*", cors()); // allow preflight for all routes
+app.options("*",cors());
 
-
+// Body parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 // Serve sitemap.xml before React routes
 app.get("/sitemap.xml", (req, res) => {
