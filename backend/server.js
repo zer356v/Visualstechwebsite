@@ -28,6 +28,7 @@ app.use(limiter);
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5000",
+  "https://visualstechwebsite-backend.onrender.com",
   "https://visualstechfrontend.onrender.com//",
   "https://www.visualstech.in",
 ];
