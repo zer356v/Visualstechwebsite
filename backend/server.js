@@ -53,29 +53,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-// Serve sitemap.xml before React routes
+// Serve sitemap.xml and robots.txt first
 app.get("/sitemap.xml", (req, res) => {
   res.header("Content-Type", "application/xml");
   res.sendFile(path.join(__dirname, "sitemap.xml"));
 });
 
-
-
-// ✅ Serve robots.txt from backend folder
 app.get("/robots.txt", (req, res) => {
   const filePath = path.join(__dirname, "robots.txt");
   res.type("text/plain");
   res.sendFile(filePath);
 });
-
-
 // -------------------- STATIC FRONTEND --------------------
-
 
 // Path to frontend's build folder
 const frontendPath = path.join(__dirname, "../frontend/dist");
-// Serve static files 
+
+// Serve React static files
 app.use(express.static(frontendPath));
+
+// Catch-all for React routes (must come after sitemap, robots, and static files)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
 
 
 // -------------------- Email API -------------------- //
