@@ -25,58 +25,41 @@ app.use(limiter);
 
 // CORS – only allow your frontend
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5000",
-  "https://visualstechwebsite-backend.onrender.com",
-  "https://visualstechfrontend.onrender.com//",
-  "https://www.visualstech.in",
-];
-
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (e.g., curl, Postman) or from allowed origins
-    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
-      callback(null, true);
-    } else {
-      console.log("❌ Blocked by CORS: ", origin);
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
+  origin: "https://visualstech.in", // replace with your frontend URL
+  methods: ["GET","POST","PUT","DELETE"],
 }));
 
-app.options("*",cors());
+app.options("*", cors()); // allow preflight for all routes
 
-// Body parsers
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-// Serve sitemap.xml and robots.txt first
+// Serve sitemap.xml before React routes
 app.get("/sitemap.xml", (req, res) => {
   res.header("Content-Type", "application/xml");
   res.sendFile(path.join(__dirname, "sitemap.xml"));
 });
 
+
+
+// ✅ Serve robots.txt from backend folder
 app.get("/robots.txt", (req, res) => {
   const filePath = path.join(__dirname, "robots.txt");
   res.type("text/plain");
   res.sendFile(filePath);
 });
+
+
 // -------------------- STATIC FRONTEND --------------------
+
 
 // Path to frontend's build folder
 const frontendPath = path.join(__dirname, "../frontend/dist");
-
-// Serve React static files
+// Serve static files 
 app.use(express.static(frontendPath));
-
-// Catch-all for React routes (must come after sitemap, robots, and static files)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
-});
 
 
 // -------------------- Email API -------------------- //
