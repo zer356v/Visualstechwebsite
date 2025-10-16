@@ -23,15 +23,19 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// CORS – only allow your frontend
 
 app.use(cors({
-  origin: "https://visualstech.in",
+  origin: "https://visualstech.in", // must match your frontend exactly
   methods: ["GET","POST","PUT","DELETE"],
   credentials: true
 }));
 
-app.options("*", cors()); // allow preflight for all routes
+// Preflight requests
+app.options("*", cors({
+  origin: "https://visualstech.in",
+  credentials: true
+}));
+
 
 
 app.use(express.json());
