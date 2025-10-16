@@ -25,27 +25,14 @@ app.use(limiter);
 
 // CORS – only allow your frontend
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5000",
-  "https://viunix-frontend.onrender.com",
-  "https://www.viunix.com",
-];
-
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (e.g., curl, Postman) or from allowed origins
-    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
-      callback(null, true);
-    } else {
-      console.log("❌ Blocked by CORS: ", origin);
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
+  origin: "https://visualstech.in",
+  methods: ["GET","POST","PUT","DELETE"],
+  credentials: true
 }));
 
-app.options("*",cors());
+app.options("*", cors()); // allow preflight for all routes
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
