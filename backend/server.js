@@ -39,6 +39,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Serve sitemap.xml before React routes
+app.get("/sitemap.xml", (req, res) => {
+  res.header("Content-Type", "application/xml");
+  res.sendFile(path.join(__dirname, "sitemap.xml"));
+});
+
+
+// ✅ Serve robots.txt from backend folder
+app.get("/robots.txt", (req, res) => {
+  const filePath = path.join(__dirname, "robots.txt");
+  res.type("text/plain");
+  res.sendFile(filePath);
+});
+
+
 // Path to frontend's build folder
 const frontendPath = path.join(__dirname, "../frontend/dist");
 
