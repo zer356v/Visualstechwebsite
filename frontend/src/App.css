@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
   margin: 0;
@@ -7,11 +7,13 @@
   box-sizing: border-box;
 }
 
+
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
   color: #333;
 }
+
 
 /* Utility Classes */
 .container-custom {
@@ -20,21 +22,25 @@ body {
   padding: 0 1rem;
 }
 
+
 @media (min-width: 768px) {
   .container-custom {
     padding: 0 2rem;
   }
 }
 
+
 .section-padding {
   padding: 5rem 0;
 }
+
 
 @media (min-width: 768px) {
   .section-padding {
     padding: 6rem 0;
   }
 }
+
 
 .section-title {
   font-size: 2.5rem;
@@ -43,11 +49,13 @@ body {
   color: #1f2937;
 }
 
+
 @media (min-width: 768px) {
   .section-title {
     font-size: 3rem;
   }
 }
+
 
 .section-subtitle {
   font-size: 1.25rem;
@@ -55,60 +63,73 @@ body {
   margin-bottom: 3rem;
 }
 
+
 /* Button Styles */
 .btn-primary {
   @apply inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200;
 }
 
+
 .btn-outline {
   @apply inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200;
 }
+
 
 /* Card Styles */
 .card-shadow {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+
 .card-shadow:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
 
 /* Form Styles */
 .form-input {
   @apply appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm;
 }
 
+
 .form-label {
   @apply block text-sm font-medium text-gray-700 mb-2;
 }
+
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
+
 ::-webkit-scrollbar-track {
   background: #1f2937;
 }
+
 
 ::-webkit-scrollbar-thumb {
   background: #4f46e5;
   border-radius: 4px;
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
   background: #4338ca;
 }
+
 
 /* Animation utilities */
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
 
 @keyframes float {
   0%, 100% {
@@ -119,9 +140,11 @@ html {
   }
 }
 
+
 .animate-pulse-slow {
   animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
 
 /* Gradient text */
 .gradient-text {
@@ -131,16 +154,19 @@ html {
   background-clip: text;
 }
 
+
 /* Backdrop blur utilities */
 .backdrop-blur-custom {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
+
 /* Custom focus styles */
 .focus-ring {
   @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
 }
+
 
 /* Loading states */
 .loading-skeleton {
@@ -148,6 +174,7 @@ html {
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;
 }
+
 
 @keyframes skeleton-loading {
   0% {
@@ -158,6 +185,7 @@ html {
   }
 }
 
+
 /* Dark mode utilities */
 @media (prefers-color-scheme: dark) {
   .auto-dark {
@@ -165,9 +193,87 @@ html {
   }
 }
 
+
 /* Print styles */
 @media print {
   .no-print {
     display: none !important;
+  }
+}
+
+
+/* ========================================
+   FINAL HEADLINE STYLE - Mixed Fonts with Italics
+   "We Build Web Solutions That Solve Business Problems"
+   ======================================== */
+
+.headline-final {
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
+  margin-bottom: 24px !important;
+}
+
+.headline-final .lead {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400;
+  color: white;
+  display: block;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.headline-final .lead .emphasis {
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  background: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.headline-final .impact {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(68px, 9vw, 110px);
+  font-weight: 900;
+  line-height: 0.95;
+  display: block;
+  color: white;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.headline-final .impact .emphasis {
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  background: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .headline-final .lead {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .headline-final .impact {
+    font-size: 48px;
+    margin-bottom: 4px;
+  }
+}
+
+/* Tablet responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .headline-final .lead {
+    font-size: 36px;
+  }
+  
+  .headline-final .impact {
+    font-size: 72px;
   }
 }
