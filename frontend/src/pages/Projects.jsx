@@ -9,6 +9,7 @@ import ProjectCard from '../components/projects/ProjectCard';
 import { assets } from '../assets/assets';
 import { Helmet } from "react-helmet";
 
+
 // Animated 3D text component
 const AnimatedText = ({ text, position, rotation, color = "#ffffff" }) => {
   const textRef = useRef();
@@ -157,6 +158,32 @@ const Projects = () => {
       image: (assets.Viunix1),
       link: '/projects/Viunix'
     },
+     {
+      id: '9',
+      title: 'Le Doux',
+      category: 'WebSites',
+      description: 'A premium online bakery platform for Le Doux, featuring handcrafted desserts, pastries, and cakes with seamless online ordering and delivery options.',
+      image: (assets.ledouxImage1),
+      link: '/projects/LeDoux'
+    },
+    {
+      id: '10',
+      title: 'Sweet Dreems Bakery',
+      category: 'WebSites',
+      description: 'An elegant bakery website for Sweet Dreems Bakery, showcasing artisan cakes, pastries, and dessert collections with easy customization and online ordering.',
+      image: (assets.sd1),
+      link: '/projects/SweetDreemsBakery'
+    },
+    {
+      id: '11',
+      title: 'Nebula Bakery',
+      category: 'WebSites',
+      description: 'A futuristic online bakery website for Nebula Bakery, offering artisanal cakes, pastries, and desserts with elegant design and seamless online ordering experience.',
+      image: (assets.nb1),
+      link: '/projects/NebulaBakery'
+    }
+
+
   ];
 
   
