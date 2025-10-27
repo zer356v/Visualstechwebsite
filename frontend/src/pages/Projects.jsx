@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import ProjectFilters from '../components/projects/ProjectFilters';
 import ProjectCard from '../components/projects/ProjectCard';
 import { assets } from '../assets/assets';
+import { Helmet } from "react-helmet";
 
 // Animated 3D text component
 const AnimatedText = ({ text, position, rotation, color = "#ffffff" }) => {
