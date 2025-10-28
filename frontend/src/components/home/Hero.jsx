@@ -170,9 +170,9 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <span className="lead">
-                We Build Web <span className="emphasis">Solutions</span>
+                We Build Web <span className="emphasis">Solutions </span>
+                That Solve
               </span>
-              <span className="impact">That Solve</span>
               <span className="impact">
                 Business <span className="emphasis">Problems</span>
               </span>
@@ -195,10 +195,19 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
+              
               {['SEO Optimization', 'SaaS Platforms', 'Web Applications', 'Custom Websites'].map((service, index) => (
                 <span
                   key={index}
                   className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium backdrop-blur-sm hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300"
+                >
+                  {service}
+                </span>
+              ))}
+              {['E-commerce platforms', 'Billing Software'].map((service, index) => (
+                <span
+                  key={index}
+                  className="px-4 py-2 rounded-full bg-white border border-white/10 text-dark-300 text-sm font-medium backdrop-blur-sm hover:bg-white/90 hover:border-cyan-500/30 transition-all duration-300"
                 >
                   {service}
                 </span>
