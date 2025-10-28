@@ -277,3 +277,144 @@ html {
     font-size: 72px;
   }
 }
+
+.explore-thread-btn {
+  position: relative;
+  background: #000;
+  color: #072265;
+  padding: 0.75em 1.7em;
+  font-size: 1.1rem;
+  border-radius: 2em;
+  overflow: hidden;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 36px rgba(3,107,252,0.11);
+}
+
+/* Static shine effect — gradient only over border */
+.explore-thread-btn::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 2em;
+  pointer-events: none;
+  border: 2px solid transparent; /* avoids overlap with actual border */
+  background: linear-gradient(
+    90deg,
+    #74c7fc 25%, /* light blue shine */
+    #fff 100%,    /* soft white reflective area */
+    #000 0%     /* fades to button background */
+  );
+  opacity: 0.92;
+  z-index: 1;
+}
+
+/* Inner content stays above shine and border */
+.explore-thread-btn > * {
+  position: relative;
+  z-index: 2;
+}
+
+.explore-thread-btn:hover {
+  background: linear-gradient(90deg, #e6f3fd, #fff 60%);
+  border-color: #036bfc;
+  box-shadow: 0 2px 18px #74c7fc77;
+}
+
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100cqw;
+  height: 100cqw;
+  transition: opacity 300ms;
+  background-image: linear-gradient(
+    transparent,
+    transparent 30%,
+    #fffa,
+    transparent 70%,
+    transparent
+  );
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.spinner-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 300ms;
+  opacity: 1;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 102%;
+  height: 102%;
+  border-radius: 9999px;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(116, 199, 252, 0) 0%,
+      rgba(116, 199, 252, 0.23) 50%,
+      rgba(255,255,255,0.08) 80%,
+      rgba(116, 199, 252, 0) 100%
+    );
+  opacity: 0.5;
+  transform: translate(-50%, -50%);
+  animation: spinner-rotate 2s linear infinite;
+  z-index: 1;
+}
+
+@keyframes spinner-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.front-layer {
+  position: absolute;
+  border-radius: 9999px;
+  inset: 0.17rem;
+  z-index: 2;
+  background: radial-gradient(
+    40% 60% at 50% 100%,
+    rgba(255, 239, 206, 0.11),
+    transparent
+  ),
+  radial-gradient(
+    80% 140% at 50% 120%,
+    rgba(116, 199, 252, 0.13),
+    transparent
+  ),
+  rgba(9, 20, 36, 0.71);
+  transition: background 0.3s;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 3;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}

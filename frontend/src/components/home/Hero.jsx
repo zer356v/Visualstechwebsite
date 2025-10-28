@@ -214,20 +214,34 @@ const Hero = () => {
             >
               <Link
                 to="/services"
-                className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold flex items-center justify-center shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300"
+                className="explore-thread-btn flex items-center justify-between"
               >
                 <span>Explore Our Services</span>
-                <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                <span className="explore-thread-arrow ml-2 flex items-center justify-center"></span>
+                <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="12" fill="#072265" /> {/* dark blue round background */}
+                  <path
+                    d="M12 7l5 5m0 0l-5 5m5-5H6"
+                    stroke="white"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
                 </svg>
               </Link>
 
               <Link
                 to="/projects"
-                className="group px-8 py-4 rounded-full text-white border-2 border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm font-semibold flex items-center justify-center"
+                className="group px-8 py-4 rounded-full text-white bg-cyan-500/10 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm font-semibold flex items-center justify-center demo-btn"
+                style={{ position: "relative", overflow: "hidden" }}
               >
-                <span>View Demo</span>
+                <div className="spinner-container">
+                  <div className="spinner"></div>
+                </div>
+                <div className="front-layer"></div>
+                <span className="btn-text">View Demo</span>
               </Link>
+
             </motion.div>
 
             {/* Stats - Centered */}
