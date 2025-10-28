@@ -326,6 +326,135 @@ const ProjectDetail = () => {
       author: "Vasantha Kumar, Sales Head at Viunix"
     }
     },
+      {
+        id: "9",
+        title: "Le Doux",
+        category: "webSites",
+        description:
+          "A premium online bakery web application for Le Doux, featuring handcrafted cakes, desserts, and pastries with seamless ordering, customization, and delivery tracking.",
+        fullDescription:
+          "Le Doux is a luxury bakery web platform designed to provide customers with a delightful digital experience that mirrors the charm of a real artisan bakery. The website allows users to explore beautifully presented cakes, pastries, and desserts, customize their orders, make secure online payments, and schedule deliveries with ease. Built with scalability and design precision, Le Doux focuses on blending aesthetics with functionality — offering a smooth, responsive interface and elegant animations. The admin panel enables efficient order management, product updates, and promotional campaigns for the brand.",
+        image:
+          "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        technologies: [
+          "MERN Stack",
+          "Firebase",
+          "Stripe API",
+          "Tailwind CSS",
+          "Framer Motion"
+        ],
+        duration: "1 months",
+        client: "Le Doux Bakery Pvt. Ltd.",
+        link: "/projects/LeDoux",
+        gallery: [
+          (assets.LeDoux1),
+          (assets.LeDoux2),
+          (assets.LeDoux3),
+          (assets.LeDoux4)
+        ],
+        challenges: [
+          "Creating a luxury bakery experience through digital design and storytelling",
+          "Integrating product customization options for cakes and desserts",
+          "Optimizing site speed while maintaining high-quality product visuals"
+        ],
+        solutions: [
+          "Developed a visually rich and responsive UI using React and Tailwind CSS",
+          "Implemented secure payment flow and order scheduling through Stripe and Firebase",
+          "Optimized high-resolution images and SEO metadata for improved visibility and performance"
+        ],
+        testimonial: {
+          quote:
+            "Our new Le Doux bakery website perfectly reflects our brand’s elegance and craftsmanship. Online orders and customer engagement have grown tremendously since launch.",
+          author: "Rohit Sharma, Founder of Le Doux Bakery"
+        }
+      },
+    {
+      id: "10",
+      title: "Sweet Dreems",
+      category: "websites",
+      description:
+        "An elegant online bakery ordering platform for Sweet Dreems Bakery, featuring handcrafted desserts, real-time ordering, and a seamless digital shopping experience.",
+      fullDescription:
+        "Sweet Dreems Bakery is a beautifully designed web application built to bring the charm of a local bakery into the digital world. It allows customers to browse a curated selection of cakes, pastries, and desserts, customize orders, and schedule deliveries with ease. The platform emphasizes user experience with smooth animations, responsive design, and intuitive navigation. Optimized for performance and SEO, the website enhances the brand’s online visibility while maintaining its handcrafted identity. It also includes an admin dashboard for managing orders, inventory, and promotions efficiently.",
+      image:
+      (assets.sd1),
+      technologies: [
+        "MERN Stack",
+        "Firebase",
+        "Stripe API",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      duration: "3.8 days",
+      client: "Sweet Dreems Bakery Pvt. Ltd.",
+      link: "/projects/SweetDreemsBakery",
+      gallery: [
+        (assets.sd1),
+        (assets.sd2),
+        (assets.sd3),
+        (assets.sd4)
+      ],
+      challenges: [
+        "Showcasing artisan bakery products with aesthetic presentation and performance balance",
+        "Integrating an easy-to-use order customization and delivery scheduling system",
+        "Ensuring strong SEO and fast load times for high customer engagement"
+      ],
+      solutions: [
+        "Designed a visually rich and responsive UI with warm bakery-inspired tones",
+        "Built dynamic order customization, cart, and scheduling features using React and MongoDB",
+        "Implemented SEO-friendly content with strong local search keywords like “online bakery in Dubai” and “custom cakes delivery UAE”"
+      ],
+      testimonial: {
+        quote:
+          "Our customers love the new Sweet Dreems website! It perfectly captures our bakery’s warmth and creativity, and online orders have grown steadily since launch.",
+        author: "Anjali Thomas, Owner of Sweet Dreems Bakery"
+      }
+    },
+    {
+      id: "11",
+      title: "Nebula Bakery",
+      category: "webSites",
+      description:
+        "A futuristic online bakery platform for Nebula Bakery, offering artisanal cakes, pastries, and desserts with smooth online ordering, customization, and doorstep delivery.",
+      fullDescription:
+        "Nebula Bakery is a next-generation bakery web application that combines artistry and technology to deliver a seamless digital dessert experience. The platform enables customers to explore a wide range of handcrafted cakes, pastries, and sweets through a visually immersive interface. With options for custom cake designs, instant ordering, and real-time delivery updates, Nebula Bakery redefines online confectionery experiences. The website emphasizes performance, aesthetics, and user delight — integrating a clean UI with dynamic animations and intuitive navigation. Its admin dashboard empowers bakery staff to manage products, track orders, and run promotional campaigns effortlessly.",
+      image:
+        (assets.nb1),
+      technologies: [
+        "MERN Stack",
+        "Firebase",
+        "Stripe API",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      duration: "1.6 months",
+      client: "Nebula Bakery Pvt. Ltd.",
+      link: "/projects/NebulaBakery",
+      gallery: [
+        (assets.nb1),
+        (assets.nb2),
+        (assets.nb3),
+        (assets.nb4)
+      ],
+      challenges: [
+        "Designing a futuristic yet cozy bakery interface that stands out digitally",
+        "Creating smooth product filtering and customization for a wide range of desserts",
+        "Ensuring high-speed performance with rich visuals and animations"
+      ],
+      solutions: [
+        "Developed an elegant and performance-optimized front end using React and Tailwind CSS",
+        "Implemented Firebase for real-time order tracking and seamless backend synchronization",
+        "Used Framer Motion for immersive animations that enhance brand storytelling"
+      ],
+      testimonial: {
+        quote:
+          "Nebula Bakery’s new website has taken our brand to the next level — it’s elegant, modern, and incredibly easy for our customers to use. Online engagement has grown beyond expectations.",
+        author: "Sneha Kapoor, Founder of Nebula Bakery"
+      }
+    }
+
+
+
   ];
 
   const project = projects.find((p) => p.id === id);

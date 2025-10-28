@@ -35,8 +35,18 @@ import Viunix1 from './Viunix1.png'
 import Viunix2 from './Viunix2.png'
 import Viunix3 from './Viunix3.png'
 import Viunix4 from './Viunix4.png'
-
-
+import ledouxImage1 from './ledoux1.png';
+import ledouxImage2 from './ledoux2.png';
+import ledouxImage3 from './ledoux3.png';
+import ledouxImage4 from './ledoux4.png';
+import sd1 from './sd1.png';
+import sd2 from './sd2.png';
+import sd3 from './sd3.png';
+import sd4 from './sd4.png';
+import nb1 from './nb1.png';
+import nb2 from './nb2.png';
+import nb3 from './nb3.png';
+import nb4 from './nb4.png';
 
 export const assets = {
     visualslogo,
@@ -75,6 +85,17 @@ export const assets = {
     Viunix1,
     Viunix2,
     Viunix3,
-    Viunix4
-
+    Viunix4,
+    ledouxImage1,
+    ledouxImage2,
+    ledouxImage3,
+    ledouxImage4,
+    sd1,
+    sd2,
+    sd3,
+    sd4,
+    nb1,
+    nb2,
+    nb3,
+    nb4
 }

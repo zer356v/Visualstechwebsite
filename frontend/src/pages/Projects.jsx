@@ -7,6 +7,8 @@ import Layout from '../components/Layout';
 import ProjectFilters from '../components/projects/ProjectFilters';
 import ProjectCard from '../components/projects/ProjectCard';
 import { assets } from '../assets/assets';
+import { Helmet } from "react-helmet";
+
 
 // Animated 3D text component
 const AnimatedText = ({ text, position, rotation, color = "#ffffff" }) => {
@@ -156,6 +158,32 @@ const Projects = () => {
       image: (assets.Viunix1),
       link: '/projects/Viunix'
     },
+     {
+      id: '9',
+      title: 'Le Doux',
+      category: 'WebSites',
+      description: 'A premium online bakery platform for Le Doux, featuring handcrafted desserts, pastries, and cakes with seamless online ordering and delivery options.',
+      image: (assets.ledouxImage1),
+      link: '/projects/LeDoux'
+    },
+    {
+      id: '10',
+      title: 'Sweet Dreems Bakery',
+      category: 'WebSites',
+      description: 'An elegant bakery website for Sweet Dreems Bakery, showcasing artisan cakes, pastries, and dessert collections with easy customization and online ordering.',
+      image: (assets.sd1),
+      link: '/projects/SweetDreemsBakery'
+    },
+    {
+      id: '11',
+      title: 'Nebula Bakery',
+      category: 'WebSites',
+      description: 'A futuristic online bakery website for Nebula Bakery, offering artisanal cakes, pastries, and desserts with elegant design and seamless online ordering experience.',
+      image: (assets.nb1),
+      link: '/projects/NebulaBakery'
+    }
+
+
   ];
 
   
@@ -172,6 +200,19 @@ const Projects = () => {
     <Layout>
       {/* Hero Section with 3D Background */}
       <section className="relative h-[60vh] overflow-hidden flex items-center">
+        <Helmet>
+      <title>VisualsTech Projects | Web Development Company in Chennai</title>
+      <meta
+        name="description"
+        content="Explore VisualsTech's portfolio — top web development company in Chennai, delivering custom e-commerce websites, SaaS products, and SEO-driven digital experiences across India."
+      />
+      <meta
+        name="keywords"
+        content="web development company in Chennai, SEO agency in India, eCommerce website developers India, IT solutions for small business, website design services near me, software development Chennai, SaaS product design India"
+      />
+      <link rel="canonical" href="https://www.visualstech.in/projects" />
+    </Helmet>
+
         {/* 3D background */}
         <div className="absolute inset-0 z-0">
           <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
@@ -191,19 +232,24 @@ const Projects = () => {
         
         <div className="container-custom relative z-10">
           <motion.div 
-            className="text-center max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-[0_0_15px_rgba(79,70,229,0.5)]">
-              Our <span className="bg-gradient-to-r from-indigo-500 to-blue-500 text-transparent bg-clip-text">Projects</span>
-            </h1>
-            
-            <p className="text-xl text-blue-100 drop-shadow-lg">
-              Explore our portfolio of successful projects across various industries and services.
-            </p>
-          </motion.div>
+          className="text-center max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-[0_0_15px_rgba(79,70,229,0.5)]">
+            Web Development Projects in <span className="bg-gradient-to-r from-indigo-500 to-blue-500 text-transparent bg-clip-text">India</span>
+          </h1>
+          
+          <h2 className="text-2xl text-blue-100 font-semibold mb-3">
+            Professional SEO & IT Solutions Company in Chennai
+          </h2>
+
+          <p className="text-xl text-blue-100 drop-shadow-lg">
+            Explore our portfolio of eCommerce websites, SaaS platforms, and web applications built for growing businesses.
+          </p>
+        </motion.div>
+
         </div>
         
         {/* Scroll indicator */}
@@ -295,6 +341,22 @@ const Projects = () => {
           )}
         </div>
       </section>
+      <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "VisualsTech Projects",
+        "description": "Portfolio of web development, SEO, and IT projects completed by VisualsTech — a leading web development company in Chennai, India.",
+        "url": "https://www.visualstech.in/projects",
+        "itemListElement": projects.map((p, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "url": `https://www.visualstech.in${p.link}`,
+          "name": p.title
+        }))
+      })}
+      </script>
+
     </Layout>
   );
 };
