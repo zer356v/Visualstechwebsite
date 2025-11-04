@@ -1,53 +1,75 @@
-
-
 import { Link } from 'react-router-dom';
 
-const ProjectCard = ({ project, filterName ,  }) => {
-  return (
-    <div className="group">
-      <div className="overflow-hidden rounded-lg shadow-lg card-shadow">
-        <Link to={project.id}>
-          <div className="relative overflow-hidden">
-            <img 
-              src={project.image} 
-              alt={project.title} 
-              className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-              <div className="p-6">
-                <h3 className="text-white text-xl font-bold">{project.title}</h3>
-                <p className="text-white/80 text-sm">{filterName}</p>
-              </div>
-            </div>
-          </div>
-        </Link>
-        
-        <div className="p-6">
-          <h3 className="text-xl font-bold text-sapphire-300 mb-2">{project.title}</h3>
-          <p className="text-sm text-gray-400 mb-4">{filterName}</p>
-          <p className="text-gray-400 mb-4">{project.description}</p>
-          <Link 
-            to={project.id} 
-            className="text-sapphire-500 font-medium flex items-center hover:text-sapphire-300 transition-colors"
-          >
-            View Project
-            <svg 
-              className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 20 20" 
-              fill="currentColor"
+const ProjectCard = ({ project }) => (
+  <div>
+    {/* Card container */}
+    <Link to={project.id} className="block group">
+      <div className="overflow-hidden rounded-lg card-shadow relative bg-white h-full transition-shadow duration-300">
+        <div className="relative">
+          {/* Project Image with hover zoom + rotate effect */}
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[3deg]"
+          />
+          {/* Modern hover button overlay - uses App.css for animation */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button
+              className="button opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              tabIndex={-1}
             >
-              <path 
-                fillRule="evenodd" 
-                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" 
-                clipRule="evenodd" 
-              />
-            </svg>
-          </Link>
+              <p className="button__text">
+                <span style={{ "--index": 0 }}>V</span>
+                <span style={{ "--index": 1 }}>I</span>
+                <span style={{ "--index": 2 }}>E</span>
+                <span style={{ "--index": 3 }}>W</span>
+                <span style={{ "--index": 4 }}> </span>
+                <span style={{ "--index": 5 }}>P</span>
+                <span style={{ "--index": 6 }}>R</span>
+                <span style={{ "--index": 7 }}>O</span>
+                <span style={{ "--index": 8 }}>J</span>
+                <span style={{ "--index": 9 }}>E</span>
+                <span style={{ "--index": 10 }}>C</span>
+                <span style={{ "--index": 11 }}>T</span>
+              </p>
+              <div className="button__circle">
+                {/* Arrow animation handled by App.css */}
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon"
+                  width="14"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  width="14"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="button__icon button__icon--copy"
+                >
+                  <path
+                    d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
+    </Link>
+    {/* Project Title & Description BELOW the card */}
+    <div className="mt-4">
+      <h3 className="text-2xl font-bold text-sapphire-300">{project.title}</h3>
+      <p className="text-base text-gray-400">{project.description}</p>
     </div>
-  );
-};
+  </div>
+);
 
 export default ProjectCard;

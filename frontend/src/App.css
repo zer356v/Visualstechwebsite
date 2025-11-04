@@ -420,3 +420,84 @@ html {
 }
 
   
+/* From Uiverse.io by mohammed_5341 */ 
+.button {
+  cursor: pointer;
+  border: none;
+  background: #000;
+  color: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-content: center;
+  transition:
+    background 300ms,
+    transform 200ms;
+  font-weight: 600;
+}
+
+.button__text {
+  position: absolute;
+  inset: 0;
+  animation: text-rotation 8s linear infinite;
+
+  > span {
+    position: absolute;
+    transform: rotate(calc(19deg * var(--index)));
+    inset: 7px;
+  }
+}
+
+.button__circle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button__icon {
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button__icon--copy {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(-150%, 150%);
+}
+
+.button:hover {
+  background: #f9e828;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.button:hover .button__icon {
+  transform: translate(150%, -150%);
+}
+
+.button:hover .button__icon:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button:hover .button__icon--copy {
+  transform: translate(0);
+}
+
+@keyframes text-rotation {
+  to {
+    rotate: 360deg;
+  }
+}
