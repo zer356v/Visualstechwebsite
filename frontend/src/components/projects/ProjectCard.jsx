@@ -6,7 +6,7 @@ const ProjectCard = ({ project, filterName ,  }) => {
   return (
     <div className="group">
       <div className="overflow-hidden rounded-lg shadow-lg card-shadow">
-        <Link to={project.link}>
+        <Link to={project.id}>
           <div className="relative overflow-hidden">
             <img 
               src={project.image} 
