@@ -207,76 +207,126 @@ html {
    "We Build Web Solutions That Solve Business Problems"
    ======================================== */
 
-.headline-final {
-  font-weight: 400 !important;
-  line-height: 1.1 !important;
-  margin-bottom: 24px !important;
-}
-
-.headline-final .lead {
+/* Base for all headlines */
+.headline-base {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(32px, 5vw, 48px);
   font-weight: 400;
-  color: white;
-  display: block;
-  margin-bottom: 12px;
+  line-height: 1.1;
   letter-spacing: -0.01em;
 }
 
-.headline-final .lead .emphasis {
+.headline-base .lead {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.headline-base .emphasis {
   font-family: "Playfair Display", serif;
   font-style: italic;
   font-weight: 700;
   background: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
 }
 
-.headline-final .impact {
+.headline-base .impact {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(68px, 9vw, 110px);
+  font-size: clamp(40px, 6vw, 72px);
   font-weight: 900;
-  line-height: 0.95;
   display: block;
-  color: white;
   letter-spacing: -0.02em;
   margin-bottom: 6px;
 }
 
-.headline-final .impact .emphasis {
+.headline-hero .lead,
+.headline-hero .impact,
+.headline-hero .emphasis {
+  color: #fff !important;
+  background: none !important;
+  -webkit-text-fill-color: #fff !important;
+  text-fill-color: #fff !important;
+}
+.headline-hero .emphasis {
+  font-style: italic;
+  opacity: 0.95;
+  filter: blur(0.1px); /* subtle effect, tweak/remove as needed */
+}
+
+/* Hero variant (keeps your original size/color!) */
+.headline-hero .lead {
+  color: white;
+}
+.headline-hero .impact {
+  color: white;
+  font-size: clamp(68px, 9vw, 110px);
+  line-height: 0.95;
+}
+
+/* Section/page variant (auto text color, slightly smaller size for .impact) */
+.headline-section .lead {
+  color: #2c2620;
+}
+
+.headline-section .impact {
+  color: #322e1f;
+  font-size: clamp(36px, 7vw, 60px);
+  line-height: 1.05;
+}
+
+/* For all sections except hero, .emphasis matches the lead color (override gradient) */
+.headline-section .emphasis {
   font-family: "Playfair Display", serif;
   font-style: italic;
   font-weight: 700;
-  background: linear-gradient(135deg, #06b6d4 0%, #a855f7 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* SAME color as .lead in section variant */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  text-fill-color: unset;
+  color: #2c2620;
 }
 
-/* Mobile responsive */
+/* Scoped Service Card Heading Styles */
+.services-card-lead {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 600;
+  color: #144678; /* Deep modern blue (matches soft blues) */
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25em;
+}
+
+.services-card-emphasis {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 700;
+  color: #249edc; /* A brighter blue for cards */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: unset;
+  text-fill-color: unset;
+  font-size: 1.08em;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+
+/* Responsive tweaks (optional, can share with .headline-base if you prefer) */
 @media (max-width: 768px) {
-  .headline-final .lead {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .headline-final .impact {
-    font-size: 48px;
-    margin-bottom: 4px;
-  }
+  .headline-base .lead { font-size: 24px; margin-bottom: 10px; }
+  .headline-base .impact { font-size: 32px; margin-bottom: 4px; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .headline-base .lead { font-size: 36px; }
+  .headline-base .impact { font-size: 44px; }
 }
 
-/* Tablet responsive */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .headline-final .lead {
-    font-size: 36px;
-  }
-  
-  .headline-final .impact {
-    font-size: 72px;
-  }
-}
 
 .explore-thread-btn {
   position: relative;
@@ -420,3 +470,83 @@ html {
 }
 
   
+.button {
+  cursor: pointer;
+  border: none;
+  background: #000;
+  color: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-content: center;
+  transition:
+    background 300ms,
+    transform 200ms;
+  font-weight: 600;
+}
+
+.button__text {
+  position: absolute;
+  inset: 0;
+  animation: text-rotation 8s linear infinite;
+
+  > span {
+    position: absolute;
+    transform: rotate(calc(19deg * var(--index)));
+    inset: 7px;
+  }
+}
+
+.button__circle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button__icon {
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button__icon--copy {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(-150%, 150%);
+}
+
+.button:hover {
+  background: #f9e828;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.button:hover .button__icon {
+  transform: translate(150%, -150%);
+}
+
+.button:hover .button__icon:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.button:hover .button__icon--copy {
+  transform: translate(0);
+}
+
+@keyframes text-rotation {
+  to {
+    rotate: 360deg;
+  }
+}

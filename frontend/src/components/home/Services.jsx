@@ -1,90 +1,132 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { assets } from "../../assets/assets";
 
-const Services = () => {
-  const services = [
-    {
-      title: 'SASS Applications',
-      description: 'We specialize in building custom SaaS platforms that simplify workflows, enhance productivity, and deliver seamless user experiences',
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5H9a2 2 0 00-2 2v12a4 4 0 004 4h6a2 2 0 002-2V7a2 2 0 00-2-2z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Software Tools',
-      description: 'From enterprise dashboards to workflow automation, we design and develop tools that solve real business challenges and scale with your growth.',
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-      )
-    },
-    
-    {
-      title: 'Digital Marketing',
-      description: 'Our team crafts data-driven campaigns that combine SEO, social media, and targeted ads to help your brand reach the right audience at the right time.',
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      )
-    }
-  ];
+// Card visual overlap parameters
+const overlapGap = 72; // px visible peek
+const cardPadding = 'p-16 md:p-24';
 
-  return (
-    <section className="section-padding bg-gray-900">
-      <div className="container-custom">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl font-bold mb-4 text-white">Our Services</h2>
-          <p className="text-xl text-blue-200">Comprehensive IT solutions tailored to your needs</p>
-        </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div 
+// Example services array (replace image paths with yours)
+const services = [
+  {
+    category: "SaaS Development",
+    title: 'SaaS Platform Development',
+    description: 'We build scalable SaaS platforms that streamline business operations, boost productivity, and offer superior user experiences tailored for startups and enterprises.',
+    image: assets.SaasService,
+  },
+  {
+    category: "Web Application",
+    title: 'Web Application Development',
+    description: 'Our team specializes in building robust web applications for businesses and startups—from workflow management tools to collaboration platforms.',
+    image: assets.WebAppService,
+  },
+  {
+    category: "Website Design",
+    title: 'Custom Website Services',
+    description: 'We design and develop custom websites that reflect your brand’s identity, deliver seamless navigation, and convert visitors into loyal customers.',
+    image: assets.WebDesignService,
+  },
+  {
+    category: "E-commerce",
+    title: 'E-commerce Platform Development',
+    description: 'We create secure, scalable e-commerce platforms that drive online sales, integrate top payment gateways, and deliver a smooth shopping experience.',
+    image: assets.EcommerceService,
+  },
+  {
+    category: "SEO & Marketing",
+    title: 'SEO Optimization',
+    description: 'Boost your search engine visibility with our expert SEO strategies—audits, on-page optimization, keyword research, and link building for measurable results.',
+    image: assets.SeoService,
+  },
+  {
+    category: "Billing Solutions",
+    title: 'Billing Software',
+    description: 'Automate your invoicing, payment tracking, and reporting processes with our reliable and customizable billing software for businesses of any size.',
+    image: assets.BillingService,
+  }
+];
+
+// Soft blue for the cards
+const baseBlue = [227, 242, 253]; // rgb for #e3f2fd (Google Blue-50)
+
+const Services = () => (
+  <section className="section-padding bg-[#d9d4c7]/50 -mt-4 relative z-10">
+    <div className="container-custom">
+      <motion.h2 
+        className="text-center headline-base headline-section mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <span className="lead">
+          Our <span className="emphasis">Services</span>
+        </span>
+        <span className="impact">
+          We Build Digital <span className="emphasis">Solutions</span> That <br className="sm:hidden" />
+          <span>Drive</span> Businesses <span className="emphasis">Forward</span>
+        </span>
+      </motion.h2>
+
+      <div className="relative flex flex-col gap-0">
+        {services.map((service, index) => {
+          // Glass first, solid others
+          const bg = index === 0
+            ? `rgba(${baseBlue[0]},${baseBlue[1]},${baseBlue[2]},0.92)`
+            : `#e3f2fd`;
+          return (
+            <motion.div
               key={index}
-              className="relative group"
+              className={`
+                sticky left-0
+                rounded-2xl max-w-4xl mx-auto w-full flex flex-col md:flex-row
+                items-center md:items-stretch justify-between
+                ${index > 0 ? 'mt-56' : ''}
+                transition-shadow duration-500 card-shadow
+                border-[1.5px] border-[#b5d5f2] shadow-lg hover:shadow-2xl
+                min-h-[340px] 
+              `}
+              style={{
+                top: `${index * overlapGap}px`,
+                zIndex: 10 + index,
+                background: bg,
+                backdropFilter: index === 0 ? "blur(6px)" : undefined
+              }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
+              whileHover={{ y: 0, scale: 1 }}
             >
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-500"></div>
-              <div className="relative p-8 bg-gray-800 border border-gray-700 rounded-2xl text-center h-full">
-                <div className="w-16 h-16 bg-blue-900/50 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-400">
-                  {service.icon}
+              {/* Left: Text */}
+              <div className={`relative z-10 ${cardPadding} flex-1`}>
+                <span className="block mb-2 services-card-emphasis">{service.category}</span>
+                <h3 className="services-card-lead font-normal mb-3">{service.title}</h3>
+                <p className="font-inter text-base md:text-lg text-[#46658f]">{service.description}</p>
+              </div>
+              {/* Right: Image */}
+              <div className="hidden md:flex flex-col justify-center flex-none pr-6">
+                <div className="w-[260px] h-[320px] rounded-2xl shadow-lg ring-1 ring-[#b5d5f2] overflow-hidden bg-blue-100/30 flex items-center justify-center">
+                  <img src={service.image} alt={service.title} className="object-cover w-full h-full" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4">{service.title}</h3>
-                <p className="text-blue-200 text-justify">{service.description}</p>
               </div>
             </motion.div>
-          ))}
-        </div>
-        
-        <motion.div 
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <Link to="/services" className="btn-primary">
-            Explore All Services
-          </Link>
-        </motion.div>
+          );
+        })}
       </div>
-    </section>
-  );
-};
+
+      <motion.div 
+        className="text-center mt-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <Link to="/services" className="btn-primary text-lg px-8 py-3 font-semibold flex items-center gap-2 bg-gradient-to-r from-blue-500 to-[#144678] text-white shadow-lg rounded-full hover:scale-[1.04] transition-all duration-200">
+          Explore All Services
+        </Link>
+      </motion.div>
+    </div>
+  </section>
+);
 
 export default Services;
