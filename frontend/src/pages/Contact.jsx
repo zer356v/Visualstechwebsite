@@ -75,7 +75,7 @@ const Contact = () => {
     setFormStatus('sending'); // Clear and show loading status
   
     try {
-      const response = await fetch("http://localhost:5000/api/send_mail", {
+      const response = await fetch("https://visualstechwebsite-backend.onrender.com/api/send_mail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
