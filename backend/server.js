@@ -4,9 +4,7 @@ const express = require("express");
 const path = require("path");
 const http = require("http");
 const helmet = require("helmet");
-const cors = require("cors");
 const rateLimit = require("express-rate-limit");
-const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
 
 const app = express();
@@ -16,56 +14,47 @@ const PORT = process.env.PORT || 5000;
 // -------------------- Security & Limits -------------------- //
 app.use(helmet());
 
+// Rate limiter (10 seconds window, 20 requests max)
 const limiter = rateLimit({
   windowMs: 10 * 1000, // 10 seconds
-  max: 20,               // max 5 requests per 10 seconds
+  max: 20,
   message: "Too many requests, please try again later",
 });
 app.use(limiter);
 
+// -------------------- CORS -------------------- //
 const allowedOrigins = [
-  "http://localhost:5173",      // for local frontend
-  "https://visualstech.in"      // your production frontend
+  "http://localhost:5173",    // local dev
+  "https://visualstech.in"    // production frontend
 ];
 
-app.use(cors({
-  origin: function(origin, callback){
-    if(!origin) return callback(null, true); // allow requests like Postman or curl
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = "The CORS policy for this site does not allow access from the specified Origin.";
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-}));
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+  }
+  if (req.method === "OPTIONS") return res.sendStatus(200); // handle preflight
+  next();
+});
 
+// -------------------- Body Parser -------------------- //
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// Serve sitemap.xml before React routes
-app.get("/sitemap.xml", (req, res) => {
-  res.header("Content-Type", "application/xml");
-  res.sendFile(path.join(__dirname, "sitemap.xml"));
-});
-
-
-
-// ✅ Serve robots.txt from backend folder
-app.get("/robots.txt", (req, res) => {
-  const filePath = path.join(__dirname, "robots.txt");
-  res.type("text/plain");
-  res.sendFile(filePath);
-});
-
 
 // -------------------- Email API -------------------- //
 app.post("/api/send_mail", async (req, res) => {
   const { name, email, message, phone, subject } = req.body;
+
   if (!name || !email || !message || !subject || !phone) {
-    return res.status(400).json({ success: false, message: "All fields are required." });
+    return res
+      .status(400)
+      .json({ success: false, message: "All fields are required." });
   }
 
   const transporter = nodeMailer.createTransport({
@@ -79,12 +68,12 @@ app.post("/api/send_mail", async (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.RECIPIENT_EMAIL,
-    subject: subject,
+    subject,
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nPhone: ${phone}`,
   };
 
   try {
-    let info = await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
     console.log("Email sent:", info.response);
     res.status(200).json({ success: true, message: "Email sent successfully." });
   } catch (error) {
@@ -93,13 +82,29 @@ app.post("/api/send_mail", async (req, res) => {
   }
 });
 
-// -------------------- STATIC FRONTEND --------------------
-// Serve static frontend AFTER API routes
+// -------------------- Serve Static Frontend -------------------- //
 const frontendPath = path.join(__dirname, "../frontend/dist");
 app.use(express.static(frontendPath));
 
-// -------------------- 404 for invalid API -------------------- //
-app.use((req, res) => {
+// Serve sitemap.xml
+app.get("/sitemap.xml", (req, res) => {
+  res.header("Content-Type", "application/xml");
+  res.sendFile(path.join(__dirname, "sitemap.xml"));
+});
+
+// Serve robots.txt
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.sendFile(path.join(__dirname, "robots.txt"));
+});
+
+// SPA fallback (React Router)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+// -------------------- 404 Handler (API only) -------------------- //
+app.use("/api/*", (req, res) => {
   res.status(404).json({ success: false, message: "Endpoint not found." });
 });
 
