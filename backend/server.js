@@ -6,7 +6,8 @@ const path = require("path");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const nodeMailer = require("nodemailer");
-
+const cors = require("cors")
+const bodyParser = require("body-parser")
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -20,31 +21,11 @@ app.use(rateLimit({
   message: "Too many requests, please try again later"
 }));
 
-// Whitelist of allowed origins (prod + common dev)
-const WHITELIST = new Set([
-  "https://visualstech.in",
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
-  "http://localhost:3000",
-  "http://127.0.0.1:3000"
-]);
-
-// CORS middleware with dynamic origin handling
-const corsOptions = {
-  origin: function (origin, callback) {
-    // allow requests with no origin (curl, server-to-server)
-    if (!origin) return callback(null, true);
-
-    if (WHITELIST.has(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("CORS: origin not allowed"));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
-};
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 // Important: CORS applied early
 app.use(cors(corsOptions));
