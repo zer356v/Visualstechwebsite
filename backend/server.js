@@ -1,4 +1,3 @@
-// server.js (drop-in)
 require("dotenv").config();
 
 const express = require("express");
@@ -12,17 +11,17 @@ const nodeMailer = require("nodemailer");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Security
+// ---------------- SECURITY ----------------
 app.use(helmet());
 
-// Rate limiter
+// ---------------- RATE LIMIT ----------------
 app.use(rateLimit({
-  windowMs: 60 * 1000,
-  max: 20,
-  message: "Too many requests, please try again later"
+  windowMs: 60 * 1000, // 1 minute
+  max: 50,
+  message: "Too many requests, please try again later."
 }));
 
-// Whitelist of allowed origins (prod + common dev)
+// ---------------- CORS CONFIG ----------------
 const WHITELIST = new Set([
   "https://visualstech.in",
   "http://localhost:5173",
@@ -31,27 +30,20 @@ const WHITELIST = new Set([
   "http://127.0.0.1:5000"
 ]);
 
-// CORS middleware with dynamic origin handling
 const corsOptions = {
   origin: function (origin, callback) {
-    // allow requests with no origin (curl, server-to-server)
-    if (!origin) return callback(null, true);
-
-    if (WHITELIST.has(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("CORS: origin not allowed"));
-    }
+    if (!origin || WHITELIST.has(origin)) return callback(null, true);
+    return callback(new Error("CORS: Origin not allowed"));
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
 };
 
-// Important: CORS applied early
+// Apply CORS early
 app.use(cors(corsOptions));
 
-// Explicit preflight handler so we always return proper headers
+// Handle preflight requests
 app.options("*", (req, res) => {
   const origin = req.headers.origin;
   if (WHITELIST.has(origin)) {
@@ -59,13 +51,11 @@ app.options("*", (req, res) => {
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
-    return res.sendStatus(204);
   }
-  // if origin not allowed, still respond 204 without CORS headers (browser will block)
   return res.sendStatus(204);
 });
 
-// Extra safety: set dynamic headers for non-preflight responses
+// Always attach headers for valid origins
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   if (origin && WHITELIST.has(origin)) {
@@ -75,36 +65,42 @@ app.use((req, res, next) => {
   next();
 });
 
+// ---------------- PARSING ----------------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Serve static frontend - keep AFTER CORS middleware
+// ---------------- STATIC FRONTEND ----------------
 const frontendPath = path.join(__dirname, "../frontend/dist");
 app.use(express.static(frontendPath));
 
-// sitemap/robots
+// ---------------- SITEMAP & ROBOTS ----------------
 app.get("/sitemap.xml", (req, res) => {
   res.type("application/xml");
   res.sendFile(path.join(__dirname, "sitemap.xml"));
 });
+
 app.get("/robots.txt", (req, res) => {
   res.type("text/plain");
   res.sendFile(path.join(__dirname, "robots.txt"));
 });
 
-// Email endpoint
+// ---------------- NODEMAILER EMAIL SETUP ----------------
 app.post("/api/send_mail", async (req, res) => {
-  // Log origin and body for debugging (remove in prod or reduce verbosity)
-  console.log("POST /api/send_mail from origin:", req.headers.origin);
+  console.log("📨 POST /api/send_mail from:", req.headers.origin);
 
-  const { name, email, message, phone, subject } = req.body;
-  if (!name || !email || !message || !subject || !phone) {
-    return res.status(400).json({ success: false, message: "All fields are required." });
+  const { name, email, phone, subject, message } = req.body;
+
+  if (!name || !email || !phone || !subject || !message) {
+    return res.status(400).json({
+      success: false,
+      message: "All fields are required."
+    });
   }
 
+  // Configure Nodemailer transporter
   const transporter = nodeMailer.createTransport({
-    service: "gmail",
+    service: "gmail", // or change to 'Zoho', 'Outlook', or custom SMTP
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
@@ -114,25 +110,30 @@ app.post("/api/send_mail", async (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.RECIPIENT_EMAIL,
-    subject,
-    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nPhone: ${phone}`
+    subject: `📩 ${subject}`,
+    text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`
   };
 
   try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent:", info.response);
-    return res.status(200).json({ success: true, message: "Email sent successfully." });
+    await transporter.sendMail(mailOptions);
+    console.log("✅ Email sent successfully via Nodemailer");
+    res.status(200).json({ success: true, message: "Email sent successfully." });
   } catch (err) {
-    console.error("Email Error:", err);
-    return res.status(500).json({ success: false, message: "Email failed to send." });
+    console.error("❌ Nodemailer Error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to send email.",
+      error: err.message
+    });
   }
 });
 
-// 404 fallback (keep last)
+// ---------------- 404 HANDLER ----------------
 app.use((req, res) => {
   res.status(404).json({ success: false, message: "Endpoint not found." });
 });
 
+// ---------------- START SERVER ----------------
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
