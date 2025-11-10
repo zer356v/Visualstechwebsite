@@ -4,10 +4,11 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const helmet = require("helmet");
+const cors = require("cors");
 const rateLimit = require("express-rate-limit");
+const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
-const cors = require("cors")
-const bodyParser = require("body-parser")
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -21,42 +22,48 @@ app.use(rateLimit({
   message: "Too many requests, please try again later"
 }));
 
-// Define your whitelist
+// Whitelist of allowed origins (prod + common dev)
 const WHITELIST = new Set([
   "https://visualstech.in",
   "http://localhost:5173",
-  // add more allowed origins here
+  "http://127.0.0.1:5173",
+  "http://localhost:5000",
+  "http://127.0.0.1:5000"
 ]);
 
-// CORS middleware
-app.use(cors({
-  origin: function(origin, callback) {
-    // allow requests with no origin (like mobile apps, curl, postman)
+// CORS middleware with dynamic origin handling
+const corsOptions = {
+  origin: function (origin, callback) {
+    // allow requests with no origin (curl, server-to-server)
     if (!origin) return callback(null, true);
+
     if (WHITELIST.has(origin)) {
       return callback(null, true);
     } else {
-      return callback(new Error("Not allowed by CORS"));
+      return callback(new Error("CORS: origin not allowed"));
     }
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
-}));
+};
 
-// Explicit preflight handler
+// Important: CORS applied early
+app.use(cors(corsOptions));
+
+// Explicit preflight handler so we always return proper headers
 app.options("*", (req, res) => {
   const origin = req.headers.origin;
-  if (origin && WHITELIST.has(origin)) {
+  if (WHITELIST.has(origin)) {
     res.header("Access-Control-Allow-Origin", origin);
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
     return res.sendStatus(204);
   }
+  // if origin not allowed, still respond 204 without CORS headers (browser will block)
   return res.sendStatus(204);
 });
-
 
 // Extra safety: set dynamic headers for non-preflight responses
 app.use((req, res, next) => {
@@ -68,7 +75,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// -------------------- Body Parser -------------------- //
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -93,11 +99,8 @@ app.post("/api/send_mail", async (req, res) => {
   console.log("POST /api/send_mail from origin:", req.headers.origin);
 
   const { name, email, message, phone, subject } = req.body;
-
   if (!name || !email || !message || !subject || !phone) {
-    return res
-      .status(400)
-      .json({ success: false, message: "All fields are required." });
+    return res.status(400).json({ success: false, message: "All fields are required." });
   }
 
   const transporter = nodeMailer.createTransport({
