@@ -23,10 +23,22 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+const allowedOrigins = [
+  "http://localhost:5173",      // for local frontend
+  "https://visualstech.in"      // your production frontend
+];
+
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true); // allow requests like Postman or curl
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = "The CORS policy for this site does not allow access from the specified Origin.";
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
 
 app.use(express.json());
@@ -47,15 +59,6 @@ app.get("/robots.txt", (req, res) => {
   res.type("text/plain");
   res.sendFile(filePath);
 });
-
-
-// -------------------- STATIC FRONTEND --------------------
-
-
-// Path to frontend's build folder
-const frontendPath = path.join(__dirname, "../frontend/dist");
-// Serve static files 
-app.use(express.static(frontendPath));
 
 
 // -------------------- Email API -------------------- //
@@ -89,6 +92,11 @@ app.post("/api/send_mail", async (req, res) => {
     res.status(500).json({ success: false, message: "Email failed to send." });
   }
 });
+
+// -------------------- STATIC FRONTEND --------------------
+// Serve static frontend AFTER API routes
+const frontendPath = path.join(__dirname, "../frontend/dist");
+app.use(express.static(frontendPath));
 
 // -------------------- 404 for invalid API -------------------- //
 app.use((req, res) => {
