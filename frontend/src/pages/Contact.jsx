@@ -4,8 +4,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars, Cloud, Float, MeshDistortMaterial } from "@react-three/drei";
 import Layout from "../components/Layout";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "";
-
+const VITE_API_BASE = import.meta.env.VITE_API_BASE || "";
+  
 // Animated cloud component
 const CloudsField = () => {
   return (
@@ -83,7 +83,7 @@ const Contact = () => {
     setFormStatus("sending"); // Clear and show loading status
 
     try {
-      const response = await fetch(`${API_BASE}/api/send_mail`, {
+      const response = await fetch(`${VITE_API_BASE}/api/send_mail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

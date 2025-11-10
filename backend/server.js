@@ -21,28 +21,42 @@ app.use(rateLimit({
   message: "Too many requests, please try again later"
 }));
 
+// Define your whitelist
+const WHITELIST = new Set([
+  "https://visualstech.in",
+  "http://localhost:5173",
+  // add more allowed origins here
+]);
+
+// CORS middleware
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  origin: function(origin, callback) {
+    // allow requests with no origin (like mobile apps, curl, postman)
+    if (!origin) return callback(null, true);
+    if (WHITELIST.has(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
 }));
 
-// Important: CORS applied early
-app.use(cors(corsOptions));
-
-// Explicit preflight handler so we always return proper headers
+// Explicit preflight handler
 app.options("*", (req, res) => {
   const origin = req.headers.origin;
-  if (WHITELIST.has(origin)) {
+  if (origin && WHITELIST.has(origin)) {
     res.header("Access-Control-Allow-Origin", origin);
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
     return res.sendStatus(204);
   }
-  // if origin not allowed, still respond 204 without CORS headers (browser will block)
   return res.sendStatus(204);
 });
+
 
 // Extra safety: set dynamic headers for non-preflight responses
 app.use((req, res, next) => {
