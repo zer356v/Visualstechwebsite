@@ -6,6 +6,8 @@ const path = require("path");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const nodeMailer = require("nodemailer");
+const cors = require("cors")
+const bodyParser = require("body-parser")
 
 const app = express();
 const PORT = process.env.PORT || 5000;
