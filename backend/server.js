@@ -17,8 +17,8 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 
 const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 20,
+  windowMs: 10 * 1000, // 10 seconds
+  max: 5,               // max 5 requests per 10 seconds
   message: "Too many requests, please try again later",
 });
 app.use(limiter);
