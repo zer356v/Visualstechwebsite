@@ -28,6 +28,7 @@ app.use(limiter);
 app.use(cors({
   origin: "https://visualstech.in", // replace with your frontend URL
   methods: ["GET","POST","PUT","DELETE"],
+  credentials: true,
 }));
 
 app.options("*", cors()); // allow preflight for all routes
