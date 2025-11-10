@@ -4,9 +4,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const helmet = require("helmet");
-const cors = require("cors");
 const rateLimit = require("express-rate-limit");
-const bodyParser = require("body-parser");
 const nodeMailer = require("nodemailer");
 
 const app = express();
@@ -75,6 +73,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// -------------------- Body Parser -------------------- //
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -99,8 +98,11 @@ app.post("/api/send_mail", async (req, res) => {
   console.log("POST /api/send_mail from origin:", req.headers.origin);
 
   const { name, email, message, phone, subject } = req.body;
+
   if (!name || !email || !message || !subject || !phone) {
-    return res.status(400).json({ success: false, message: "All fields are required." });
+    return res
+      .status(400)
+      .json({ success: false, message: "All fields are required." });
   }
 
   const transporter = nodeMailer.createTransport({
